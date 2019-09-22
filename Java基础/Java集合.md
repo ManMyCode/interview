@@ -1,4 +1,4 @@
-#常用集合问题整理
+# 常用集合问题整理
 - ArrayList,LinkedList,HashSet，LinkedHashSet,TreeSet
     - ArrayList：有序集合、插入，删除数据慢(O(N)),查找快(O(1))，类似于数组。
     - LinkedList: 链表结构、插入，删除数据块(O(1)),查找慢(O(N)).

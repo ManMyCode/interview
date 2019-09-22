@@ -1,10 +1,12 @@
 # 面试准备大纲
 ## 1、Java基础
-### [1.1、Java集合](Java基础/Java集合.md)
+### [1.1、Java 集合](Java基础/Java集合.md)
 ### [1.2、Java IO](Java基础/JavaIO.md)
-### [1.3、Java 多线程](Java基础/Java多线程.md)
-### [1.4、设计模式](Java基础/设计模式.md)
-### [1.5、JVM](Java基础/JVM.md)
+### [1.3、Java 泛型](Java基础/Java泛型.md)
+### [1.4、Java 反射](Java基础/Java反射.md)
+### [1.5、Java 多线程](Java基础/Java多线程.md)
+### [1.6、设计模式](Java基础/设计模式.md)
+### [1.7、JVM](Java基础/JVM.md)
 ## 2、算法基础
 ### [2.1、常见排序算法实现](算法基础/常见排序算法实现.md)
 ### [2.2、B树和B+树原理](算法基础/B树和B+树原理.md)

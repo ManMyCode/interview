@@ -1,7 +1,7 @@
 # 面试准备大纲
 ## 1、Java基础
 ### [1.1、Java 集合](Java基础/Java集合.md)
-### [1.2、Java IO](Java基础/JavaIO.md)
+### [1.2、IO](Java基础/IO.md)
 ### [1.3、Java 泛型](Java基础/Java泛型.md)
 ### [1.4、Java 反射](Java基础/Java反射.md)
 ### [1.5、Java 多线程](Java基础/Java多线程.md)

@@ -48,4 +48,9 @@
 3.AIO(Asynchronous I/O)
 
 # 3、IO流
+1.按操作方式分类
+![IO按操作方式分类](images/IO按操作方式分类.png)
+2.按操作对象分类
+![IO按操作对象分类](images/IO按操作对象分类.png)
+
 

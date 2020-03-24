@@ -9,7 +9,7 @@
 
 二、`HashMap,HashTable,LinkedHashMap,TreeMap`   
 
-1.`HashMap`:非线程安全,由数组+链表组成。  
+1.`HashMap`:非线程安全,jdk1.8之前由数组+链表组成，jdk1.8以后当链表长度大于阈值默认为8时，将链表转化为红黑树，以减少搜索时间。  
 
   * 构造HashMap时的两个默认参数：initialCapacity初始容量（默认16）、loadFactor装载因子（默认0.75）
   * 向容器中添加元素的时候，如果元素个数达到阈值（元素个数=数组长度*loadFactor），就要自动扩容。

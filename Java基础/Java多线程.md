@@ -25,7 +25,7 @@
 
 - CountDownLatch:就是一个线程等待，直到他所等待的其他线程都执行完成并且调用countDown()方法发出通知后，当前线程才可以继续执行。
 - CyclicBarrier:所有线程都进行等待，直到所有线程都准备好进入await()方法之后，所有线程同时开始执行！
-- ConcurrentHashMap:将整个Map分为N个segment(类似HashTable)，可以提供相同的线程安全，但是效率提升N倍，默认N为16。
+- ConcurrentHashMap:JDK1.7将整个Map分为N个segment分段锁(类似HashTable)，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，可以提供相同的线程安全，但是效率提升N倍，默认N为16;JDK1.8放弃了Segment的设计，采用Node+CAS+synchronized来保证并发安全，synchronized只锁定当前链表或红黑二叉树的首节点，这样只要hash不冲突，就不会产生并发。
 - CopyOnWriteArrayList:类的所有可变操作（add，set 等等）都是通过创建底层数组的新副本来实现的。当 List 需要被修改的时候，我们并不需要修改原有内容，而是对原有数据进行一次复制，将修改的内容写入副本。写完之后，再将修改完的副本替换原来的数据，这样就可以保证写操作不会影响读操作了
     - 读取操作没有任何同步控制和锁操作，理由就是内部数组 array 不会发生修改，只会被另外一个 array 替换，因此可以保证数据安全。
     - 写入操作 add() 方法在添加集合的时候加了锁，保证了同步，避免了多线程写的时候会 copy 出多个副本出来。

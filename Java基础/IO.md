@@ -41,144 +41,35 @@
 
 ![ThreadpoolBIO](images/ThreadpoolBIO.png)
 
-`BIOServer.java`
+[BIOServer.java](../src/io/bio/BIOServer.java)
 
-```java
-import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-/**
- * 基于BIO的socket通信,服务端
- */
-public class BIOServer {
-    private final static int BIO_PORT = 8888;
-    public static void main(String[] args) {
-        ServerSocket serverSocket = null;
-        try{
-            //线程池
-            ExecutorService executor = Executors.newFixedThreadPool(10);
-            serverSocket = new ServerSocket(BIO_PORT);
-            System.out.println("启动服务器，监听端口"+BIO_PORT);
-            while(!Thread.currentThread().isInterrupted()){
-                Socket socket = serverSocket.accept();
-                System.out.println("客户端[" + socket.getPort() + "]已连接");
-                executor.submit(new BIOHandler(socket));
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            if (serverSocket != null){
-                try {
-                    serverSocket.close();
-                    System.out.println("关闭ServerSocket");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-}
-class BIOHandler implements Runnable{
-    private Socket socket;
-    private static final  String QUIT = "quit";
-    public BIOHandler(Socket socket) {
-        this.socket = socket;
-    }
-
-    @Override
-    public void run() {
-        try {
-            while (!Thread.currentThread().isInterrupted()&&!socket.isClosed()){
-                //创建IO流
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
-                String msg = null;
-                while ((msg = bufferedReader.readLine()) != null) {
-                    // 读取客户端发送的消息,当对方关闭时返回null
-                    System.out.println("客户端["+socket.getPort()+"]："+ msg);
-                    //回复客户发送的消息
-                    bufferedWriter.write("服务器：" + msg + "\n");
-                    bufferedWriter.flush(); //保证缓冲区的数据发送出去
-                    //查看客户端是否退出
-                    if(QUIT.equals(msg)){
-                        System.out.println("客户端["+socket.getPort()+"]已退出");
-                        break;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-```
-
-`BIOClient.java`
-
-```java
-package com.lee.quartz.socket;
-
-import java.io.*;
-import java.net.Socket;
-
-/**
- * 基于BIO的socket通信,客户端
- */
-public class BIOClient {
-    private final static int BIO_PORT = 8888;
-    private static final  String QUIT = "quit";
-    public static void main(String[] args) {
-        Socket socket = null;
-        BufferedWriter bufferedWriter = null;
-        try {
-            // 创建socket
-            socket = new Socket("127.0.0.1",BIO_PORT);
-            //创建IO流
-            BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(socket.getInputStream()));
-            bufferedWriter = new BufferedWriter( new OutputStreamWriter(socket.getOutputStream()));
-            //等待用户输入信息
-            BufferedReader consolReader = new BufferedReader(new InputStreamReader(System.in));
-            while (true) {
-                String input = consolReader.readLine();
-                //发送消息给服务器
-                bufferedWriter.write(input + "\n");
-                bufferedWriter.flush();
-                //读取服务器返回的消息
-                String msg = bufferedReader.readLine();
-                System.out.println(msg);
-
-                //查看用户是否退出
-                if(QUIT.equals(input))break;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if(bufferedWriter != null){
-                try {
-                    bufferedWriter.close();
-                    System.out.println("关闭socket");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-}
-
-```
+[BIOClient.java](../src/io/bio/BIOClient.java)
 
 2.NIO(Non-blocking I/O)
 基于jdk api实现
+[NIOServer.java](../src/io/nio/jdk/NIOServer.java)
+
+[NIOClient.java](../src/io/nio/jdk/NIOServer.java)
 
 基于netty实现
 
+[NettyServer.java](../src/io/nio/netty/NettyServer.java)
+
+[ServerHandler.java](../src/io/nio/netty/ServerHandler.java)
+
+[NettyClient.java](../src/io/nio/netty/NettyClient.java)
+
+[ClientHandler.java](../src/io/nio/netty/ClientHandler.java)
+
+[MarshallingCodeCFactory.java](../src/io/nio/netty/MarshallingCodeCFactory.java)
+
+[Message.java](../src/io/nio/netty/Message.java)
+
 3.AIO(Asynchronous I/O)
+
+[AIOServer.java](../src/io/aio/AIOServer.java)
+
+[AIOClient.java](../src/io/aio/AIOServer.java)
 
 # 3、IO流
 1.按操作方式分类

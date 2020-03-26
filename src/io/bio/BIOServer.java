@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
  */
 public class BIOServer {
     private static final int BIO_PORT = 8888;
+    private static final int BIO_PORT = 8888;
     public static void main(String[] args) {
         ServerSocket serverSocket = null;
         try{

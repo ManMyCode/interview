@@ -1,5 +1,5 @@
 # Spring 高频问题整理
-- IOC(控制反转)：
+- 1.IOC(控制反转)：
   - IOC(Inversion Of Controll)是一种设计思想，将原本在程序中手动创建对象的控制权，交由给Spring框架来管理,管理对象（通过依赖注入（DI），装配对象，配置对象，并且管理这些对象的整个生命周期。IOC容器是Spring用来实现IOC的载体，IOC容器实际上就是一个Map(key, value)，Map中存放的是各种对象。这样可以很大程度上简化应用的开发，把应用从复杂的依赖关系中解放出来。IOC容器就像是一个工厂，当需要创建一个对象，只需要配置好配置文件/注解即可，不用考虑对象是如何被创建出来的，大大增加了项目的可维护性且降低了开发难度。
   - 实现原理就是工厂模式加反射机制。IOC主要实现方式有两种：依赖注入和依赖查找。
     - 依赖查找是通过资源定位，把对应的资源查找回来
@@ -21,19 +21,17 @@
         
       - 接口注入：比如数据库连接资源完全可以在Tomcat下配置，然后通过JNDI的形式去获取它，这样数据库连接资源是属于开发工程外的资源，这个时候我们可以采用接口注入的形式来获取它 
   
-- Spring如何处理线程并发问题
-  
-  只有无状态的Bean才可以在多线程环境下共享，在Spring中，绝大部分Bean都可以声明为singleton作用域，因为Spring对一些Bean中非线程安全状态采用ThreadLocal进行处理，解决线程安全问题。
 
-- AOP：
+
+- 2.AOP：
   - AOP（Aspect-Oriented Programming，面向切面编程）能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可扩展性和可维护性。使用AOP之后我们可以把一些通用功能抽象出来，在需要用到的地方直接使用即可，这样可以大大简化代码量，提高了系统的扩展性。Spring AOP是基于动态代理的，如果要代理的对象实现了某个接口，那么Spring AOP就会使用JDK动态代理去创建代理对象；而对于没有实现接口的对象，就无法使用JDK动态代理，转而使用CGlib动态代理生成一个被代理对象的子类来作为代理。
 
-- Spring AOP / AspectJ AOP 的区别？
+- 3.Spring AOP / AspectJ AOP 的区别？
   - Spring AOP属于运行时增强，而AspectJ是编译时增强。
   - Spring AOP基于代理（Proxying），而AspectJ基于字节码操作（Bytecode Manipulation）。
   - AspectJ相比于Spring AOP功能更加强大，但是Spring AOP相对来说更简单。如果切面比较少，那么两者性能差异不大。但是，当切面太多的话，最好选择AspectJ，它比SpringAOP快很多。
   
-- Bean生命周期：
+- 4.Bean生命周期：
   - ![Bean生命周期](/主流框架/images/bean生命周期.png)
   - `1`.`实例化`；
   - `2`.将值和引用注入到对应的属性中(`填充属性`)；
@@ -47,13 +45,14 @@
   - `10`.`bean已准备就绪`，并一直驻留在应用上下文，知道应用上下文被销毁；
   - `11`.如果bean实现了DisposableBean接口，调用它的`destroy()`接口方法。如果bean使用destroy-method声明了销毁方法，该方法也会被调用；
 
-- spring 自动装配 bean 有哪些方式
+- 5.spring 自动装配 bean 有哪些方式
   - 1.`no`：默认的方式是不进行自动装配的，通过手工设置ref属性来进行装配bean;
   - 2.`byName`：通过bean的名称进行自动装配，如果一个bean的 property 与另一bean 的name 相同，就进行自动装配;
   - 3.`byType`：通过参数的数据类型进行自动装配;
   - 4.`constructor`：利用构造函数进行装配，并且构造函数的参数通过byType进行装配;
   - 5.`autodetect`：自动探测，如果有构造方法，通过 construct的方式自动装配，否则使用 byType的方式自动装配;
-- Spring 注解
+  
+- 6.Spring 注解
   - 开启注解装配：在Spring配置文件中配置 ```<context:annotation-config/>```元素；
   - `@Component`：这将 java 类标记为 bean。它是任何 Spring 管理组件的通用构造型。spring 的组件扫描机制现在可以将其拾取并将其拉入应用程序环境中；
   - `@Controller`：这将一个类标记为 Spring Web MVC 控制器。标有它的 Bean 会自动导入到 IoC 容器中；
@@ -66,3 +65,7 @@
   - `@RequestMapping`：注解用于将特定 HTTP 请求方法映射到将处理相应请求的控制器中的特定类/方法。
     - 类级别：映射请求的 URL
     - 方法级别：映射 URL 以及 HTTP 请求方法
+  
+- 7.Spring如何处理线程并发问题
+  
+  只有无状态的Bean才可以在多线程环境下共享，在Spring中，绝大部分Bean都可以声明为singleton作用域，因为Spring对一些Bean中非线程安全状态采用ThreadLocal进行处理，解决线程安全问题。

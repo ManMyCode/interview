@@ -29,15 +29,25 @@
 ## 5、主流中间件
 ### [5.1、tomcat](主流中间件/tomcat.md)
 ### [5.2、redis](主流中间件/redis.md)
-### [5.3、nginx](主流中间件/nginx.md)
-### [5.4、MQ](主流中间件/MQ.md)
-### [5.5、Zookeeper](主流中间件/Zookeeper.md)
-### [5.5、ElasticSearch](主流中间件/ElasticSearch.md)
+### [5.3、mysql](主流中间件/mysql.md)
+### [5.4、nginx](主流中间件/nginx.md)
+### [5.5、Kafka](主流中间件/Kafka.md)
+### [5.6、RabbitMQ](主流中间件/RabbitMQ.md)
+### [5.7、RocketMQ](主流中间件/RocketMQ.md)
+### [5.8、FastDFS](主流中间件/FastDFS.md)
+### [5.9、Zookeeper](主流中间件/Zookeeper.md)
+### [5.10、ElasticSearch](主流中间件/ElasticSearch.md)
+### [5.11、ELK](主流中间件/ELK.md)
 ## 6、DevOps
-### [6.1、Docker](DevOps/Docker.md)
-### [6.2、jenkins](DevOps/jenkins.md)
-### [6.3、git](DevOps/git.md)
-### [6.4、k8s](DevOps/k8s.md)
+### [6.1、Linux运维](DevOps/Linux运维.md)
+### [6.2、Docker](DevOps/Docker.md)
+### [6.3、jenkins](DevOps/jenkins.md)
+### [6.4、git](DevOps/git.md)
+### [6.5、k8s](DevOps/k8s.md)
+### [6.5、Promethues](DevOps/Promethues.md)
+### [6.5、Zabbix](DevOps/Zabbix.md)
+
+
 ## 7、网络基础
 ## 8、云计算
 ## 9、大数据

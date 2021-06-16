@@ -12,16 +12,16 @@
               <consor-artructg index="1" value="男"/>
           </bean>```
           ```
-      
+  
 - 2.Setter方法注入：Setter方法注入是容器通过反射调用无参构造器或无参static工厂 方法实例化bean之后，调用该bean的setter方法，即实现了基于setter的依赖注入。
-    
+  
       - ```xml
         <bean id="user" class="com.xx.User">
             <property name="userName" value="张三"/>
             <property name="sex" value="男"/>
         </bean>```
         ```
-      
+  
     - 接口注入：比如数据库连接资源完全可以在Tomcat下配置，然后通过JNDI的形式去获取它，这样数据库连接资源是属于开发工程外的资源，这个时候我们可以采用接口注入的形式来获取它 
 
 ## 2.AOP：
@@ -75,3 +75,35 @@
 ## 7.Spring如何处理线程并发问题
 
 只有无状态的Bean才可以在多线程环境下共享，在Spring中，绝大部分Bean都可以声明为singleton作用域，因为Spring对一些Bean中非线程安全状态采用ThreadLocal进行处理，解决线程安全问题。
+
+## 8.Spring事务隔离级别和传播行为
+
+- 脏读：一个事务正在访问数据，并对数据做了修改，但没有提交到数据库中，这是另外一个事务也访问了这个数据，然后使用了这个数据。
+- 幻读：指事务不是独立执行时发生的一种现象，比如第一个事务对一个表中的数据进行了修改，这种修改涉及到表中的全部数据行。同事，第二个事务也修改这个表中的数据，这种修改是向表中插入一行新数据。那么，以后就会发生操作第一个事务的用户发现表中还有没有修改的数据行，就好像发生了幻觉一样。
+- 不可重复读：在一个事务内，多次读同一数据，在这个事务还没有结束时，另外一个事务也访问该同一数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改，那么第一个事务两次督导的数据可能是不一样的。
+
+### 8.1 五个事务隔离级别
+
+- `ISOLATION_DEFAULT `:默认隔离级别,使用数据库设置的隔离级别。
+- `ISOLATION_READ_UNCOMMITTED `:最低的隔离级别，允许其他事务看到这个事务未提交的数据，会产生脏读，幻读，不可重复读。
+- `ISOLATION_READ_COMMITTED `:保证一个事物修改的数据提交后才能被另外一个事务读取，可以避免脏读，但可能会出现不可重复读和幻读
+- `ISOLATION_REPEATABLE_READ `:可以防止脏读，不可重复读，但可能出现幻读。
+- `ISOLATION_SERIALIZABLE `:花费最高代价，但最可靠的事务隔离级别，食物被处理为顺序执行，避免了脏读，幻读和重复读。
+
+### 8.2 七个事务传播行为
+
+- `PROPAGATION_REQUIRED `:如果存在一个事务，则支持当前事务，如果没有事务则开启一个新事务。
+- `PROPAGATION_SUPPORTS `:如果存在一个事务，则支持当前事务，如果没有事务，则非事务的执行，但对于事务同步的事务管理器，PROPAGATION_SUPPORTS与不使用事务有少许不同。
+- `PROPAGATION_MANDATORY `:如果存在一个事务，则支持当前事务，如果没有一个活动的事务，则抛出异常。
+- `PROPAGATION_REQUIRES_NEW `:总是开启一个新的事务，如果一个事务已经存在，则将这个存在的事务挂起。
+- `PROPAGATION_NOT_SUPPORTED `:总是非事务的执行，并挂起任何存在的事务。
+- `PROPAGATION_NEVER `:总是非事务的执行 ，如果存在一个活动的事务，则抛出异常。
+- `PROPAGATION_NESTED`:如果一个活动的事务存在，则运行在一个嵌套的事务中，如果没有活动事务，则按TransactionDefinition.PROPAGATION_REQUIRED属性执行。
+
+## 9.Spring循环依赖
+
+Spring内部DefaultSingletonBeanRegistry类中维护了三个Map，也就是我们通常说的三级缓存。
+
+- 一级缓存：singletonObjects ，俗称“单例缓存池”，缓存创建完成单例Bean的地方。
+- 二期缓存：earlySingletonObjects 映射Bean的早期引用，也就是说在这个Map里的Bean不是完整的，甚至还不能称之为“Bean”，只是一个Instance。
+- 三级缓存：singletonFactories 映射创建Bean的原始工厂。

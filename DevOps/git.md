@@ -69,11 +69,19 @@ git checkout branch_1.0/master 切换到branch_1.0/master分支
 
 找到Puttygen，双击生成秘钥
 
+<<<<<<< HEAD
 ![tortoisegit_1](./images/tortoisegit_1.png)
 
 生成秘钥
 
 ![puttygen](./images/puttygen.png)
+=======
+![tortoisegit_1](.\images\tortoisegit_1.png)
+
+生成秘钥
+
+![](.\images\puttygen.png)
+>>>>>>> 8c90840544939bca5fac7b0586c5e6a20c4d778a
 
 将私钥保存到本地熟悉的的目录
 
@@ -81,6 +89,7 @@ git checkout branch_1.0/master 切换到branch_1.0/master分支
 
 登录github账号，找到用户的settings, 点击 new SSH key按钮添加ssh key,如下图
 
+<<<<<<< HEAD
 ![github_settings](./images/github_settings.png)
 
 tortoiseGit本地clone github上的项目,在loadPuttykey栏选择前面保存的私钥文件，点击ok后clone
@@ -90,6 +99,17 @@ tortoiseGit本地clone github上的项目,在loadPuttykey栏选择前面保存�
 clone完成。
 
 ![git_clone](./images/git_clone.png)
+=======
+![image-20210616233946050](.\images\github_settings.png)
+
+tortoiseGit本地clone github上的项目,在loadPuttykey栏选择前面保存的私钥文件，点击ok后clone
+
+![image-20210616235249815](.\images\tortoisegit_2.png)
+
+clone完成。
+
+![image-20210616235521909](.\images\git_clone.png)
+>>>>>>> 8c90840544939bca5fac7b0586c5e6a20c4d778a
 
 ## 4、本地仓库搭建
 

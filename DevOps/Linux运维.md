@@ -77,7 +77,11 @@ rpm -e 需要卸载的安装包
 
 通过top命令可以查看系统平均负载和CPU使用率，如下：
 
+<<<<<<< HEAD
 ![](./images/top.png)
+=======
+![](.\images\top.png)
+>>>>>>> 8c90840544939bca5fac7b0586c5e6a20c4d778a
 
 平均负载有三个数字：63.66，58.39，57.18，分别表示过去 1 分钟、5 分钟、15 分钟机器的负载。按照经验，若数值小于 0.7*CPU 个数，则系统工作正常；若超过这个值，甚至达到 CPU 核数的四五倍，则系统的负载就明显偏高。
 
@@ -85,7 +89,11 @@ vmstat命令可以查看CPU的上下文切换次数：
 
 安装：`yum install -y sysstat`
 
+<<<<<<< HEAD
 ![](./images/vmstat_1.png)
+=======
+![](.\images\vmstat_1.png)
+>>>>>>> 8c90840544939bca5fac7b0586c5e6a20c4d778a
 
 ```sh
 vmstat 1 10  #1表示每秒采集一次服务器状态，10表示只采集10次。
@@ -128,7 +136,11 @@ jstack 命令通常配合 top 使用，通过 top -H -p pid 定位 Java 进程�
 
 jstat 命令可打印 GC 详细信息，Young GC 和 Full GC 次数，堆信息等。其命令格式为jstat –gcxxx -t pid
 
+<<<<<<< HEAD
 ![image-20210615222003904](./images/jstat.png)
+=======
+![image-20210615222003904](.\images\jstat.png)
+>>>>>>> 8c90840544939bca5fac7b0586c5e6a20c4d778a
 
 ```
 S0C：年轻代中第一个survivor（幸存区）的容量 (字节)         
